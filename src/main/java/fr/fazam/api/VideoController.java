@@ -28,13 +28,13 @@ public class VideoController {
 	 private VideoService videoService;
 	
 	@GetMapping("videos")
-	public ResponseEntity<List<Video>> getAllCelebrites() {
+	public ResponseEntity<List<Video>> getAllVideos() {
 		List<Video> list = videoService.getAllVideos();
 		return new ResponseEntity<List<Video>>(list, HttpStatus.OK);
 	}
 	
 	@PostMapping("video")
-	public ResponseEntity<Void> addUtilisateur(@RequestBody Video video, UriComponentsBuilder builder) throws Exception {
+	public ResponseEntity<Void> addVideo(@RequestBody Video video, UriComponentsBuilder builder) throws Exception {
 		boolean flag = videoService.create(video);
 		if (flag == false) {
 			return new ResponseEntity<Void>(HttpStatus.CONFLICT);

@@ -1,21 +1,25 @@
 package fr.fazam.entites;
 
 import java.util.HashSet;
-import java.util.Map;
+
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 
 @Entity
+@Table(name ="celebrite")
 public class Celebrite {
 	@Id
-	@GeneratedValue
-	private String celebrit_id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="id")
+	private int celebrit_id;
 	
 	
 	@Column(name="nom")
@@ -47,11 +51,11 @@ public class Celebrite {
 		this.prenom = prenom;
 	}
 
-	public String getCelebrit_id() {
+	public int getCelebrit_id() {
 		return celebrit_id;
 	}
 
-	public void setCelebrit_id(String celebrit_id) {
+	public void setCelebrit_id(int celebrit_id) {
 		this.celebrit_id = celebrit_id;
 	}
 
