@@ -16,38 +16,36 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 
+import fr.fazam.entites.Utilisateur;
+import fr.fazam.service.UtilisateurService;
 
-import fr.fazam.entites.Celebrite;
-import fr.fazam.service.CelebriteService;
 
 @RestController
-@RequestMapping("celebrite")
-public class CelebriteController {
-
-	
+@RequestMapping("utilisateur")
+public class UtilisateurController {
 	@Autowired
-	 private CelebriteService celebriteService;
+	 private UtilisateurService utilisateurService;
 	
-	@GetMapping("celebrites")
-	public ResponseEntity<List<Celebrite>> getAllCelebrites() {
-		List<Celebrite> list = celebriteService.getAllCelebrites();
-		return new ResponseEntity<List<Celebrite>>(list, HttpStatus.OK);
+	@GetMapping("utilisateurs")
+	public ResponseEntity<List<Utilisateur>> getAllCelebrites() {
+		List<Utilisateur> list = utilisateurService.getAllUsers();
+		return new ResponseEntity<List<Utilisateur>>(list, HttpStatus.OK);
 	}
 	
-	@PostMapping("celebrite")
-	public ResponseEntity<Void> addCelebrite(@RequestBody Celebrite celebrite, UriComponentsBuilder builder) throws Exception {
-		boolean flag = celebriteService.create(celebrite);
+	@PostMapping("utilisateur")
+	public ResponseEntity<Void> addUtilisateur(@RequestBody Utilisateur utilisateur, UriComponentsBuilder builder) throws Exception {
+		boolean flag = utilisateurService.create(utilisateur);
 		if (flag == false) {
 			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
 		}
 		HttpHeaders headers = new HttpHeaders();
-		headers.setLocation(builder.path("/celebrite/{id}").buildAndExpand(celebrite.getCelebrit_id()).toUri());
+		headers.setLocation(builder.path("/utilisateur/{id}").buildAndExpand(utilisateur.getUtilisateur_id()).toUri());
 		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
 	
-	@DeleteMapping("celebrite/{id}")
-	public ResponseEntity<Void> deleteStudent(@PathVariable("id") Integer id) throws Exception {
-		boolean flag = celebriteService.delete(id);
+	@DeleteMapping("utilisateur/{id}")
+	public ResponseEntity<Void> deleteUtilisateur(@PathVariable("id") Integer id) throws Exception {
+		boolean flag = utilisateurService.delete(id);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
 }

@@ -1,6 +1,7 @@
 package fr.fazam.entites;
 
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -76,7 +77,10 @@ public class Celebrite {
 				+ utilisateurs + ", videos=" + videos + "]";
 	}
 
+
+	}
+
 	
 	
 	
-}
+

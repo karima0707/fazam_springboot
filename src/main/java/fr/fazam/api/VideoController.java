@@ -16,38 +16,38 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 
+import fr.fazam.entites.Video;
 
-import fr.fazam.entites.Celebrite;
-import fr.fazam.service.CelebriteService;
+import fr.fazam.service.VideoService;
 
 @RestController
-@RequestMapping("celebrite")
-public class CelebriteController {
-
+@RequestMapping("video")
+public class VideoController {
 	
 	@Autowired
-	 private CelebriteService celebriteService;
+	 private VideoService videoService;
 	
-	@GetMapping("celebrites")
-	public ResponseEntity<List<Celebrite>> getAllCelebrites() {
-		List<Celebrite> list = celebriteService.getAllCelebrites();
-		return new ResponseEntity<List<Celebrite>>(list, HttpStatus.OK);
+	@GetMapping("videos")
+	public ResponseEntity<List<Video>> getAllCelebrites() {
+		List<Video> list = videoService.getAllVideos();
+		return new ResponseEntity<List<Video>>(list, HttpStatus.OK);
 	}
 	
-	@PostMapping("celebrite")
-	public ResponseEntity<Void> addCelebrite(@RequestBody Celebrite celebrite, UriComponentsBuilder builder) throws Exception {
-		boolean flag = celebriteService.create(celebrite);
+	@PostMapping("video")
+	public ResponseEntity<Void> addUtilisateur(@RequestBody Video video, UriComponentsBuilder builder) throws Exception {
+		boolean flag = videoService.create(video);
 		if (flag == false) {
 			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
 		}
 		HttpHeaders headers = new HttpHeaders();
-		headers.setLocation(builder.path("/celebrite/{id}").buildAndExpand(celebrite.getCelebrit_id()).toUri());
+		headers.setLocation(builder.path("/video/{id}").buildAndExpand(video.getVideo_id()).toUri());
 		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
 	
-	@DeleteMapping("celebrite/{id}")
-	public ResponseEntity<Void> deleteStudent(@PathVariable("id") Integer id) throws Exception {
-		boolean flag = celebriteService.delete(id);
+	@DeleteMapping("video/{id}")
+	public ResponseEntity<Void> deleteVideo(@PathVariable("id") Integer id) throws Exception {
+		boolean flag = videoService.delete(id);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
+
 }
