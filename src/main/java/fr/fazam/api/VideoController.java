@@ -21,19 +21,19 @@ import fr.fazam.entites.Video;
 import fr.fazam.service.VideoService;
 
 @RestController
-@RequestMapping("video")
+@RequestMapping("videos")
 public class VideoController {
 	
 	@Autowired
 	 private VideoService videoService;
 	
-	@GetMapping("videos")
+	@GetMapping("")
 	public ResponseEntity<List<Video>> getAllVideos() {
 		List<Video> list = videoService.getAllVideos();
 		return new ResponseEntity<List<Video>>(list, HttpStatus.OK);
 	}
 	
-	@PostMapping("video")
+	@PostMapping("")
 	public ResponseEntity<Void> addVideo(@RequestBody Video video, UriComponentsBuilder builder) throws Exception {
 		boolean flag = videoService.create(video);
 		if (flag == false) {
@@ -44,7 +44,7 @@ public class VideoController {
 		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
 	
-	@DeleteMapping("video/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteVideo(@PathVariable("id") Integer id) throws Exception {
 		boolean flag = videoService.delete(id);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);

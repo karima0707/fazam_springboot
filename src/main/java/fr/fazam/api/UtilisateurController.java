@@ -21,18 +21,19 @@ import fr.fazam.service.UtilisateurService;
 
 
 @RestController
-@RequestMapping("utilisateur")
+@RequestMapping("utilisateurs")
 public class UtilisateurController {
 	@Autowired
 	 private UtilisateurService utilisateurService;
 	
-	@GetMapping("utilisateurs")
-	public ResponseEntity<List<Utilisateur>> getAllCelebrites() {
+	@GetMapping()
+	public ResponseEntity<List<Utilisateur>> getAllUtilisateurs() {
 		List<Utilisateur> list = utilisateurService.getAllUsers();
 		return new ResponseEntity<List<Utilisateur>>(list, HttpStatus.OK);
 	}
 	
-	@PostMapping("utilisateur")
+	
+	@PostMapping()
 	public ResponseEntity<Void> addUtilisateur(@RequestBody Utilisateur utilisateur, UriComponentsBuilder builder) throws Exception {
 		boolean flag = utilisateurService.create(utilisateur);
 		if (flag == false) {
@@ -43,9 +44,14 @@ public class UtilisateurController {
 		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
 	
-	@DeleteMapping("utilisateur/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteUtilisateur(@PathVariable("id") Integer id) throws Exception {
 		boolean flag = utilisateurService.delete(id);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
+	/*
+	 * @GetMapping("/{id}") public ResponseEntity<Utilisateur> getUtilisateur(int
+	 * id) { if(id!=0 ) { Utilisateur user = utilisateurService.findById(id); return
+	 * new ResponseEntity<Utilisateur> (user, HttpStatus.OK); } return null;}
+	 */
 }

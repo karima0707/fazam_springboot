@@ -1,9 +1,7 @@
 package fr.fazam.service;
 
 import java.util.List;
-
-
-import org.springframework.security.core.userdetails.UserDetails;
+import java.util.Optional;
 
 import fr.fazam.entites.Utilisateur;
 
@@ -14,6 +12,7 @@ public interface UtilisateurService {
 	public boolean delete(int id) throws Exception;
 	
 	
-	//public Utilisateur findByUsername(String username);
+	Optional<Utilisateur> findByUsername(String username);
+	public Utilisateur findById(int id);
 
 }

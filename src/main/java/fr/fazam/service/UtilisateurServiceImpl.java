@@ -2,6 +2,7 @@ package fr.fazam.service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -40,14 +41,23 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 	}
 	
 	
-	/*
-	 * public Utilisateur findByUsername(String username) { Utilisateur user =
-	 * utilisateurDao.findUserWithName(username); if (user == null) { throw new
-	 * UsernameNotFoundException("No user present with username : " + username); }
-	 * else { return user;
-	 * 
-	 * }
-	 * 
-	 * }
-	 */
+	
+	 
+	  
+	  
+	@Override
+	public Optional<Utilisateur> findByUsername(String username) {
+		Optional<Utilisateur> user =
+				  utilisateurDao.findUserWithName(username); if (user == null) { throw new
+				  UsernameNotFoundException("No user present with username : " + username); }
+				  else { return user;
+				 
+		
+	}
+	}
+	@Override
+	public Utilisateur findById(int id) {
+		Utilisateur utilisateur=utilisateurDao.findOne(id);
+		return utilisateur;
+	}
 }

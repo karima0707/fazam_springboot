@@ -21,20 +21,20 @@ import fr.fazam.entites.Celebrite;
 import fr.fazam.service.CelebriteService;
 
 @RestController
-@RequestMapping("celebrite")
+@RequestMapping("celebrites")
 public class CelebriteController {
 
 	
 	@Autowired
 	 private CelebriteService celebriteService;
 	
-	@GetMapping("celebrites")
+	@GetMapping()
 	public ResponseEntity<List<Celebrite>> getAllCelebrites() {
 		List<Celebrite> list = celebriteService.getAllCelebrites();
 		return new ResponseEntity<List<Celebrite>>(list, HttpStatus.OK);
 	}
 	
-	@PostMapping("celebrite")
+	@PostMapping()
 	public ResponseEntity<Void> addCelebrite(@RequestBody Celebrite celebrite, UriComponentsBuilder builder) throws Exception {
 		boolean flag = celebriteService.create(celebrite);
 		if (flag == false) {
@@ -45,7 +45,7 @@ public class CelebriteController {
 		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
 	
-	@DeleteMapping("celebrite/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteStudent(@PathVariable("id") Integer id) throws Exception {
 		boolean flag = celebriteService.delete(id);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
