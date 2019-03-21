@@ -6,9 +6,11 @@ import fr.fazam.entites.Celebrite;
 
 
 
+
 public interface CelebriteService {
 	
 	public List<Celebrite> getAllCelebrites();
 	public boolean create(Celebrite celebrite) throws Exception;
 	public boolean delete(int id) throws Exception;
+	public Celebrite findById(int id);
 }

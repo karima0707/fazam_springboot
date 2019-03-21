@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.fazam.dao.VideoDao;
+
 import fr.fazam.entites.Video;
 
 @Service
@@ -33,4 +34,9 @@ public class VideoServiceImpl implements VideoService {
 		return true;
 	}
 
+	@Override
+	public Video findById(int id) {
+		Video video=videoDao.findOne(id);
+		return video;
+	}
 }

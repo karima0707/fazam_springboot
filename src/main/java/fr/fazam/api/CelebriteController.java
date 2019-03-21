@@ -18,6 +18,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 
 import fr.fazam.entites.Celebrite;
+
 import fr.fazam.service.CelebriteService;
 
 @RestController
@@ -50,4 +51,9 @@ public class CelebriteController {
 		boolean flag = celebriteService.delete(id);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
+	
+	 @GetMapping("/search/{id}") public ResponseEntity<Celebrite> getCelerite(@PathVariable("id") Integer
+	  id)  { Celebrite celebrite = celebriteService.findById(id); 
+	  return
+	  new ResponseEntity<Celebrite> (celebrite, HttpStatus.OK); } 
 }

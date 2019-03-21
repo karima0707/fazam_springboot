@@ -1,7 +1,6 @@
 package fr.fazam.entites;
 
-import java.io.Serializable;
-import java.util.Collection;
+
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -13,16 +12,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+
 import javax.persistence.Table;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "utilisateur")
-public class Utilisateur implements Serializable, UserDetails {
-	private static final long serialVersionUID = 1L;
+public class Utilisateur  {
+	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -100,43 +97,16 @@ public class Utilisateur implements Serializable, UserDetails {
 				+ ", recherches=" + recherches + "]";
 	}
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-	@Override
 	public String getPassword() {
 		return password;
 	}
 
-	@Override
-	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
-	@Override
-	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
+	
 }

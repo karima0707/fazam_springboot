@@ -49,9 +49,9 @@ public class UtilisateurController {
 		boolean flag = utilisateurService.delete(id);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
-	/*
-	 * @GetMapping("/{id}") public ResponseEntity<Utilisateur> getUtilisateur(int
-	 * id) { if(id!=0 ) { Utilisateur user = utilisateurService.findById(id); return
-	 * new ResponseEntity<Utilisateur> (user, HttpStatus.OK); } return null;}
-	 */
+	
+	 @GetMapping("/search/{id}") public ResponseEntity<Utilisateur> getUtilisateur(@PathVariable("id") Integer
+	  id)  { Utilisateur user = utilisateurService.findById(id); return
+	  new ResponseEntity<Utilisateur> (user, HttpStatus.OK); } 
+	 
 }

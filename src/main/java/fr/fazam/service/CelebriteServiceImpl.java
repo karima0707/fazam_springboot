@@ -35,4 +35,11 @@ public class CelebriteServiceImpl implements CelebriteService {
 		return false;
 	}
 
+
+	@Override
+	public Celebrite findById(int id) {
+		Celebrite celebrite = celebriteDao.findOne(id);
+		return celebrite;
+	}
+
 }

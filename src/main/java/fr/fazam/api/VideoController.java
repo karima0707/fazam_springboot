@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-
 import fr.fazam.entites.Video;
 
 import fr.fazam.service.VideoService;
@@ -50,4 +49,8 @@ public class VideoController {
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
 
+	 @GetMapping("/search/{id}") public ResponseEntity<Video> getVideo(@PathVariable("id") Integer
+	  id)  { Video video = videoService.findById(id); 
+	  return
+	  new ResponseEntity<Video> (video, HttpStatus.OK); } 
 }
